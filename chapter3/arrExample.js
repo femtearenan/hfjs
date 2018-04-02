@@ -1,3 +1,3 @@
 var flavors = ["vanilla", "butterscotch", "lavender", "chocolate", "cookie dough"];
 
-alert(flavors[2]);
+console.log("Today's flavor is " + flavors[3]);
