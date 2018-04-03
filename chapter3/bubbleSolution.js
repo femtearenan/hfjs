@@ -8,12 +8,13 @@ var scores = [60, 50, 60, 58, 54, 54,
 function getIndexOfMax(arr) {
     var maxIndex = 0;
     var maxValue = getMaxValue(arr);
+    var maxArr = [];
     for (i = 0; i < arr.length; i++) {
         if (arr[i] == maxValue) {
-            return i;
+            maxArr.push(i);
         }
     }
-    return maxIndex;
+    return maxArr;
 }
 
 function getMaxValue(arr) {
@@ -26,4 +27,33 @@ function getMaxValue(arr) {
     return maxValue;
 }
 
-console.log("The best solution is " + getIndexOfMax(scores) + " with a score of " + getMaxValue(scores));
+function getStringOfBestSolutions(arr) {
+    var bestSolution = "";
+    var arrOfBestSolutions = getIndexOfMax(arr);
+    if (arrOfBestSolutions.length == 1) {
+        bestSolution = arrOfBestSolutions[0];
+    } else if (arrOfBestSolutions.length > 1) {
+        for (i = 0; i < arrOfBestSolutions.length; i++) {
+            if (i == arrOfBestSolutions.length - 1) {
+                bestSolution = bestSolution + "#" + arrOfBestSolutions[i];
+            } else {
+                bestSolution = bestSolution + "#" + arrOfBestSolutions[i] + ", "; 
+            }
+        }
+    } else {
+        bestSolution = "n/a";
+    }
+    return bestSolution;
+}
+
+function printSolutions(arr) {
+    for (i = 0; i < arr.length; i++) {
+        console.log("Bubble solution #" + i + " score: " + arr[i]);
+    }
+
+    console.log("\n Bubbles tests: " + arr.length);
+    console.log("Highest bubble score: " + getMaxValue(arr));
+    console.log("Solutions with highest score: " + getStringOfBestSolutions(arr));
+}
+
+printSolutions(scores);
